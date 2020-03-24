@@ -11,10 +11,14 @@ public class ProxyMain {
 //        UserCanDo proxy=new StaticProxy(userCanDo);
 //        System.out.println(proxy.userCanDoSomething());
 
-        UserCanDo userCanDo=new StockUser();
-
-        UserCanDo canDo=(UserCanDo) new JdkDynamicProxy(userCanDo).getProxyInstance();
-        System.out.println(canDo.userCanDoSomething());
+        //jdk动态代理
+//        UserCanDo userCanDo=new StockUser();
+//        UserCanDo canDo=(UserCanDo) new JdkDynamicProxy(userCanDo).getProxyInstance();
+//        System.out.println(canDo.userCanDoSomething());
+        //cglib动态代理
+        CglibDynamicProxy dynamicProxy=new CglibDynamicProxy();
+        ProviderUser userCanDo=(ProviderUser)(dynamicProxy.getProxyInstance(ProviderUser.class));
+        System.out.println(userCanDo.userCanDoSomething());
 
     }
 }

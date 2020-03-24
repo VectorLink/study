@@ -5,15 +5,15 @@ package com.example.pattern.proxypattern;
  * @author GM20170901
  * @date 2020/3/23 17:28
  */
-public class StaticProxy implements UserCanDo{
+public class StaticProxy  {
     private UserCanDo userCanDo;
 
     public StaticProxy( UserCanDo userCanDo) {
         this.userCanDo=userCanDo;
     }
 
-    @Override
-    public String userCanDoSomething() {
+
+    public String getInfo() {
         System.out.println(getSomePrivateSomething());
         System.out.println(userCanDo.userCanDoSomething());
         return getSomeSomeDone();
