@@ -7,18 +7,18 @@ package com.example.pattern.proxypattern;
 public class ProxyMain {
     public static void main(String[] args) {
 //        静态代理测试
-//        UserCanDo userCanDo=new StockUser();
+//        UserCanDo userCanDo=new ProviderUser();
 //        UserCanDo proxy=new StaticProxy(userCanDo);
 //        System.out.println(proxy.userCanDoSomething());
 
-        //jdk动态代理
-//        UserCanDo userCanDo=new StockUser();
+//        //jdk动态代理
+//        UserCanDo userCanDo=new ProviderUser();
 //        UserCanDo canDo=(UserCanDo) new JdkDynamicProxy(userCanDo).getProxyInstance();
 //        System.out.println(canDo.userCanDoSomething());
         //cglib动态代理
-        CglibDynamicProxy dynamicProxy=new CglibDynamicProxy();
-        ProviderUser userCanDo=(ProviderUser)(dynamicProxy.getProxyInstance(ProviderUser.class));
-        System.out.println(userCanDo.userCanDoSomething());
+//        CglibDynamicProxy dynamicProxy=new CglibDynamicProxy();
+//        StockUser userCanDo=(StockUser)(dynamicProxy.getProxyInstance(StockUser.class));
+//        System.out.println(userCanDo.getInfo());
 
     }
 }

@@ -12,9 +12,6 @@ import java.lang.reflect.Method;
  */
 public class CglibDynamicProxy implements MethodInterceptor {
 
-
-
-
     public Object getProxyInstance(Class clazz){
         //1.创建工具类
         Enhancer enhancer=new Enhancer();
