@@ -23,6 +23,7 @@ public class TryConcurrency {
                     };
                     innerThread.setDaemon(true);
                     innerThread.start();
+                    System.out.println(Thread.currentThread().getName());
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

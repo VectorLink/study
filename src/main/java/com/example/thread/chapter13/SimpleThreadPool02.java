@@ -10,7 +10,7 @@ public class SimpleThreadPool02 {
     private final static int DEFAULT_SIZE = 10;
     private final static int DEFAULT_TASK_QUEUE_SIZE = 2000;
     private static volatile int seq = 0;
-    private static final String TREAD_PREFIX = "SIMPLE_TREAD_POOLE";
+    private static final String TREAD_PREFIX = "SIMPLE_TREAD_POOLE_";
     private static final ThreadGroup GROUP = new ThreadGroup("SIMPLE_GROUP");
     private final static LinkedList<Runnable> TASK_QUEUE = new LinkedList<>();
     private final static List<WorkerTask> TREAD_QUEUE = new ArrayList<>();
@@ -81,8 +81,9 @@ public class SimpleThreadPool02 {
                             break OUTER;
                         }
                     }
+                    runnable = TASK_QUEUE.removeFirst();
                 }
-                runnable = TASK_QUEUE.removeFirst();
+
                 if (null != runnable) {
                     taskState = TaskState.RUNNING;
                     runnable.run();
@@ -100,6 +101,7 @@ public class SimpleThreadPool02 {
 
     }
     public void shutdown() throws InterruptedException {
+        System.out.println(TASK_QUEUE.size());
         while (!TASK_QUEUE.isEmpty()){
             Thread.sleep(100L);
         }
@@ -147,14 +149,15 @@ public class SimpleThreadPool02 {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        SimpleThreadPool02 simpleThreadPool = new SimpleThreadPool02(6, 10, SimpleThreadPool02.DEFAULT_DISCARD_POLICY);
+        SimpleThreadPool02 simpleThreadPool = new SimpleThreadPool02();
         for (int i = 0; i < 40; i++) {
+            System.out.println(i);
             simpleThreadPool.submit(new Runnable() {
                 @Override
                 public void run() {
                     try {
                         System.out.println(Thread.currentThread().getName() + "正在办事");
-                        Thread.sleep(10_000);
+                        Thread.sleep(5_000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -162,7 +165,9 @@ public class SimpleThreadPool02 {
                 }
             });
         }
-        Thread.sleep(6000);
+        Thread.sleep(10_000L);
+        System.out.println("=========>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         simpleThreadPool.shutdown();
+        System.out.println("=========");
     }
 }
