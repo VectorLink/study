@@ -34,7 +34,7 @@ public class NioSelectorSokectServer {
                 SelectionKey selectionKey = iterator.next();
                 //链接事件(只有服务端才会发生的注册事件，这时候需要将服务端里面获取对应的对应的客户端channel，并设置为非阻塞，注册到selector中)
                 if (selectionKey.isAcceptable()) {
-                    ServerSocketChannel realServerSocketChannel = (ServerSocketChannel) selectionKey.channel();
+                     ServerSocketChannel realServerSocketChannel = (ServerSocketChannel) selectionKey.channel();
                     SocketChannel socketChannel = realServerSocketChannel.accept();
                     socketChannel.configureBlocking(false);
                     socketChannel.register(selector, SelectionKey.OP_READ);
